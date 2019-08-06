@@ -23,12 +23,15 @@ type ChatroomOptions = {
   waitingTimeout?: number,
   fetchOptions?: RequestOptions,
   rasaToken?: string,
+  newSessionOnRefresh?: Boolean
 };
 
 window.Chatroom = function(options: ChatroomOptions) {
+  console.log(options);
+  
   let sessionUserId = window.sessionStorage.getItem(USERID_STORAGE_KEY);
 
-  const isNewSession = sessionUserId == null;
+  const isNewSession = (sessionUserId == null || options.newSessionOnRefresh);
 
   if (isNewSession) {
     sessionUserId = uuidv4();
