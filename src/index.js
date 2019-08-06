@@ -27,7 +27,7 @@ type ChatroomOptions = {
 };
 
 window.Chatroom = function(options: ChatroomOptions) {
-  console.log(options);
+  // console.log(options);
   
   let sessionUserId = window.sessionStorage.getItem(USERID_STORAGE_KEY);
 
