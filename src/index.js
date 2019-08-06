@@ -23,7 +23,8 @@ type ChatroomOptions = {
   waitingTimeout?: number,
   fetchOptions?: RequestOptions,
   rasaToken?: string,
-  newSessionOnRefresh?: Boolean
+  newSessionOnRefresh?: Boolean,
+  showSessionId?: Boolean
 };
 
 window.Chatroom = function(options: ChatroomOptions) {
@@ -36,6 +37,10 @@ window.Chatroom = function(options: ChatroomOptions) {
   if (isNewSession) {
     sessionUserId = uuidv4();
     window.sessionStorage.setItem(USERID_STORAGE_KEY, sessionUserId);
+  }
+
+  if (options.showSessionId) {
+    options.welcomeMessage += "\nYour session id:\n" + sessionUserId;
   }
 
   this.ref = ReactDOM.render(
